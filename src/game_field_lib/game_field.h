@@ -1,4 +1,5 @@
 
-char **memory_allocation_for_game_field(int height, int width);
-void free_memory(char **game_field, int height);
+char **create_game_field(int height, int width);
+void delete_game_field(char **game_field, int height);
+void print_game_field(char **game_field, int height, int width);
 

@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 
-char **memory_allocation_for_game_field(int height, int width) {
+char **create_game_field(int height, int width) {
 	char **game_field = NULL;
 	game_field = (char**)malloc(height * sizeof(char*));
 	if (game_field == NULL) {
@@ -20,7 +20,7 @@ char **memory_allocation_for_game_field(int height, int width) {
 	return game_field;
 }
 
-void free_memory(char **game_field, int height) {
+void delete_game_field(char **game_field, int height) {
 	if (game_field == NULL) {
 		printf("The memory has already been cleared!");
 	} else {
@@ -28,6 +28,15 @@ void free_memory(char **game_field, int height) {
 			free(game_field[i]);		
 		}
 		free(game_field);
+	}
+}
+
+void print_game_field(char **game_field, int height, int width) {
+	for (int y = 0; y < height; y++) {
+		for (int x = 0; x < width; x++) {
+			printf("%c", game_field[y][x]);
+		}
+		printf("\n");
 	}
 }
 
