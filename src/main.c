@@ -3,6 +3,7 @@
 
 #include "game_field_lib/game_field.h"
 #include "snake_lib/snake.h"
+#include "input_lib/input.h"
 #include "main.h"
 
 #define HEIGHT 25
@@ -49,13 +50,22 @@ int main_loop(char **game_field, char *snake, char fruit_symbol) {
 	// Цикл обновления экрана.	
 		
 	char user_ch = '0';
-	
+	char snake_dir = '0';
+
 	add_snake_to_game_field(game_field, HEIGHT, WIDTH, snake, START_SNAKE_LENGTH);
 
 	while (user_ch != 'q') {
 
-		//update_game_field(game_field, snake, START_SNAKE_LENGTH, fruit_symbol, HEIGHT, WIDTH);	
+		//update_game_field(game_field, snake, START_SNAKE_LENGTH, fruit_symbol, HEIGHT, WIDTH, snake_dir);	
 		print_game_field(game_field, HEIGHT, WIDTH);
+
+		// Ожидаем от пользователя нажатия на кнопку.
+		user_ch = get_game_char();
+		if (user_ch == 'A' || user_ch == 'B' || user_ch == 'C' || user_ch == 'D') {
+			snake_dir = user_ch;
+		}
+		printf("Была нажата клавиша: %c", user_ch);
+
 
 		// Задержка обновления экрана
 		sleep(1);
@@ -65,7 +75,7 @@ int main_loop(char **game_field, char *snake, char fruit_symbol) {
 	return 0;
 }
 
-int update_game_field(char **game_field, char *snake, int start_snake_length, char fruit_symbol, int height, int width) {
+int update_game_field(char **game_field, char *snake, int start_snake_length, char fruit_symbol, int height, int width, char snake_dir) {
 
 	int snake_length = start_snake_length;
 
