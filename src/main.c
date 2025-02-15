@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <unistd.h>
 
 #include "game_field_lib/game_field.h"
 #include "snake_lib/snake.h"
@@ -13,18 +14,22 @@ int main(void) {
 
 	// Инициализация игрового поля.
 	char **game_field = NULL;
+	char game_field_symbol = '.';
 	game_field = (char**)create_game_field(HEIGHT, WIDTH); 	
 	if (game_field == NULL) {
 		error_flag = 1;	
 	}
+	fill_game_field(game_field, HEIGHT, WIDTH, game_field_symbol);
 
 	// Инициализация змеи.	
 	char *snake = NULL;
 	char snake_body_symbol = '@';	
-	snake = (char*)create_snake(START_SNAKE_LENGTH, snake_body_symbol);
+	snake = (char*)create_snake(START_SNAKE_LENGTH);
 	if (snake == NULL) {
 		error_flag = 1;
 	}
+	fill_snake(snake, START_SNAKE_LENGTH, snake_body_symbol);
+
 
 	// Символ фрукта.
 	char fruit_symbol = 'F';
@@ -41,14 +46,41 @@ int main(void) {
 }
 
 int main_loop(char **game_field, char *snake, char fruit_symbol) {
-
+	// Цикл обновления экрана.	
+		
 	char user_ch = '0';
+	
+	add_snake_to_game_field(game_field, HEIGHT, WIDTH, snake, START_SNAKE_LENGTH);
 
 	while (user_ch != 'q') {
 
-		
+		//update_game_field(game_field, snake, START_SNAKE_LENGTH, fruit_symbol, HEIGHT, WIDTH);	
+		print_game_field(game_field, HEIGHT, WIDTH);
+
+		// Задержка обновления экрана
+		sleep(1);
 
 	}		
 
 	return 0;
 }
+
+int update_game_field(char **game_field, char *snake, int start_snake_length, char fruit_symbol, int height, int width) {
+
+	int snake_length = start_snake_length;
+
+	for (int y = 0; y < height; y++) {
+		for (int x = 0; x < width; x++) {
+			
+				
+
+		}
+	}
+
+	return 0;
+}
+
+
+
+
+

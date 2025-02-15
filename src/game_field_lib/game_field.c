@@ -40,3 +40,21 @@ void print_game_field(char **game_field, int height, int width) {
 	}
 }
 
+void add_snake_to_game_field(char **game_field, int height, int width, char *snake, int snake_length) {
+	// Добавляет змейку на стартовую позицию в центре экрана.
+
+	for (int i = 0; i < snake_length; i++) {
+		game_field[height / 2][(width / 2) + i] = snake[i];
+	}
+
+}
+
+void fill_game_field(char **game_field, int height, int width, char field_symbol) {
+	// Заполняет игровое поле символами.
+	
+	for (int y = 0; y < height; y++) {
+		for (int x = 0; x < width; x++) {
+			game_field[y][x] = field_symbol;
+		}
+	}
+}
