@@ -34,11 +34,13 @@ void delete_snake(char *snake) {
 }
 
 
-void fill_snake(char *snake, int snake_length, char snake_body_symbol) {
+void fill_snake(char *snake, int snake_length, char snake_body_symbol, char snake_head_symbol) {
 	// Заполняет тело змейки символами змейки.
 	
 	for (int i = 0; i < snake_length; i++) {
 		snake[i] = snake_body_symbol;
 	}
+
+	snake[snake_length - 1] = snake_head_symbol;
 
 }
